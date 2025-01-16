@@ -1,18 +1,16 @@
 # Set up code checking
-from learntools.core import binder
-binder.bind(globals())
-from learntools.machine_learning.ex7 import *
+
 
 # Set up filepaths
 import os
-if not os.path.exists("../input/train.csv"):
-    os.symlink("../input/home-data-for-ml-course/train.csv", "../input/train.csv")  
-    os.symlink("../input/home-data-for-ml-course/test.csv", "../input/test.csv") 
+if not os.path.exists("/content/train.csv"):
+    os.symlink("/content/train.csv")
+    os.symlink("/content/train.csv") 
 import pandas as pd
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_absolute_error
 from sklearn.model_selection import train_test_split
-iowa_file_path = '../input/train.csv'
+iowa_file_path = '/content/train.csv'
 home_data = pd.read_csv(iowa_file_path)
 home_data.dropna()
 y = home_data.SalePrice
@@ -40,7 +38,7 @@ rf_val_mae_full = mean_absolute_error(rf_model_val_pred_on_full_data, val_y)
 # fit rf_model_on_full_data on all data from the training data
 print("Validation MAE for Random Forest Model: {:,.0f}".format(rf_val_mae_full))
 # path to file you will use for predictions
-test_data_path = '../input/test.csv'
+test_data_path = '/content/test.csv'
 
 # read test data file using pandas
 test_data = pd.read_csv(test_data_path)
